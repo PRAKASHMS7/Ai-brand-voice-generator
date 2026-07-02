@@ -36,6 +36,7 @@ interface ResultPlaceholderProps {
   modelUsed?: string;
   onCopyNotification: (message: string) => void;
   onRegenerate?: () => void;
+  knowledgeSources?: { type: string; name: string }[];
 }
 
 export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
@@ -47,6 +48,7 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
   modelUsed,
   onCopyNotification,
   onRegenerate,
+  knowledgeSources = [],
 }) => {
   // 1. Error State
   if (error) {
@@ -101,6 +103,29 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
             <div>
               <h4 className="text-sm font-bold text-amber-900 leading-tight">Fallback Model Active</h4>
               <p className="mt-1 text-xs text-amber-800 leading-relaxed font-normal">{notice}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Knowledge Sources Checklist */}
+        {knowledgeSources && knowledgeSources.length > 0 && (
+          <div className="p-5 rounded-3xl border border-slate-100 bg-white/70 backdrop-blur-md shadow-sm space-y-3">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 rounded-lg bg-green-50/80 flex items-center justify-center text-green-600 shadow-inner">
+                <span className="text-xs font-bold">✓</span>
+              </div>
+              <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-700">Knowledge Sources Used</h4>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {knowledgeSources.map((source, idx) => (
+                <div
+                  key={idx}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-100 text-xs font-bold text-slate-700 shadow-sm"
+                >
+                  <span className="text-green-500 font-bold">✓</span>
+                  <span>{source.name}</span>
+                </div>
+              ))}
             </div>
           </div>
         )}

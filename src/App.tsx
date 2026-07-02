@@ -42,6 +42,8 @@ function App() {
   const [generatedResponse, setGeneratedResponse] = useState<BrandVoiceResponse | undefined>(undefined);
   const [fallbackNotice, setFallbackNotice] = useState<string | undefined>(undefined);
   const [apiError, setApiError] = useState<string | undefined>(undefined);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [knowledgeSources, setKnowledgeSources] = useState<{ type: string; name: string }[]>([]);
   const [toastMessage, setToastMessage] = useState<string | undefined>(undefined);
 
   const handleFieldChange = useCallback(<K extends keyof BrandVoiceFormState>(
@@ -84,8 +86,69 @@ function App() {
       }
     }, 2800);
 
+    let retrievedContext = '';
+    let sources: { type: string; name: string }[] = [];
+
+    const hasWebsite = formState.websiteUrl && formState.websiteUrl.trim() !== '';
+    const hasFiles = uploadedFiles && uploadedFiles.length > 0;
+
+    if (hasWebsite || hasFiles) {
+      try {
+        setLoadingMessage("Connecting to knowledge database...");
+        const formData = new FormData();
+        formData.append('brandName', formState.brandName);
+        if (hasWebsite) {
+          formData.append('websiteUrl', formState.websiteUrl.trim());
+        }
+        uploadedFiles.forEach(file => {
+          formData.append('files', file);
+        });
+
+        setLoadingMessage("Crawling website and indexing reference documents...");
+        const indexResponse = await fetch('http://localhost:8000/api/index', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (indexResponse.ok) {
+          const indexData = await indexResponse.json();
+          sources = indexData.sources || [];
+
+          setLoadingMessage("Retrieving relevant company context...");
+          const retrieveResponse = await fetch('http://localhost:8000/api/retrieve', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              brandName: formState.brandName,
+              industry: formState.industry === 'other' ? formState.customIndustry : formState.industry,
+              targetAudience: formState.targetAudience,
+              tone: formState.tone,
+              writingStyle: formState.writingStyle,
+              tagline: formState.tagline || '',
+              writingSamples: formState.writingSamples || '',
+              k: 5
+            }),
+          });
+
+          if (retrieveResponse.ok) {
+            const retrieveData = await retrieveResponse.json();
+            retrievedContext = retrieveData.context || '';
+            sources = retrieveData.sources || sources;
+          }
+        }
+      } catch (ragError) {
+        console.warn("RAG pipeline failed, falling back to prompt-only generation:", ragError);
+        sources = [];
+      }
+    }
+
+    setKnowledgeSources(sources);
+
     try {
-      const prompt = buildBrandVoicePrompt(formState);
+      setLoadingMessage("Synthesizing brand voice report...");
+      const prompt = buildBrandVoicePrompt(formState, retrievedContext);
       const modelId = OPENROUTER_MODEL_IDS[selectedModel];
       
       const response = await OpenRouterService.generateBrandVoice(modelId, prompt);
@@ -144,6 +207,8 @@ function App() {
               onChange={handleFieldChange}
               onSubmit={handleSubmit}
               isLoading={isLoading}
+              uploadedFiles={uploadedFiles}
+              onFilesChange={setUploadedFiles}
             />
           </div>
 
@@ -168,6 +233,7 @@ function App() {
             modelUsed={OPENROUTER_MODEL_IDS[selectedModel]}
             onCopyNotification={(msg) => setToastMessage(msg)}
             onRegenerate={() => handleSubmit()}
+            knowledgeSources={knowledgeSources}
           />
         </footer>
 

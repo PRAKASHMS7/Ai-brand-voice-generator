@@ -5,7 +5,7 @@ import type { BrandVoiceFormState } from '../types';
  * Instructs the AI model to act as a senior Brand Strategist, return a single
  * valid JSON object matching a strict predefined schema, and mark every property as mandatory.
  */
-export const buildBrandVoicePrompt = (form: BrandVoiceFormState): string => {
+export const buildBrandVoicePrompt = (form: BrandVoiceFormState, retrievedContext?: string): string => {
   const brandTypeDescription =
     form.brandType === 'known'
       ? 'an existing established brand with a public footprint'
@@ -17,7 +17,22 @@ export const buildBrandVoicePrompt = (form: BrandVoiceFormState): string => {
     single_product: 'Core brand voice style guide optimized for a single key product launch.',
   }[form.generateFor];
 
-  return `You are an elite, senior Brand Strategist. Analyze the following brand details and generate a highly professional, consistent, and actionable Brand Voice guide.
+  const contextPrefix = retrievedContext && retrievedContext.trim() !== ''
+    ? `The following information has been retrieved from trusted company sources including the official website and uploaded company documents.
+
+Treat this information as the primary source of truth.
+
+If retrieved information conflicts with general model knowledge, prioritize the retrieved information.
+
+Retrieved Company Knowledge
+--------------------
+${retrievedContext.trim()}
+--------------------
+
+`
+    : '';
+
+  return `${contextPrefix}You are an elite, senior Brand Strategist. Analyze the following brand details and generate a highly professional, consistent, and actionable Brand Voice guide.
 
 ### BRAND INFORMATION:
 - Brand Name: ${form.brandName}
