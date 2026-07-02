@@ -125,7 +125,8 @@ The retrieved context is injected into the prompt, allowing the AI to generate r
 
 | Home Screen 1 | Home Screen 2 |
 |--------------|---------------|
-| ![Home Screen 1](./screenshots/home1.png) | ![Home Screen 2](./screenshots/home2.png) |
+| ![Home Screen 1](./screenshots/Home 1.png) | ![Home Screen 2](./screenshots/Home 2.png) |
+
 
 
 ---
