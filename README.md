@@ -128,7 +128,7 @@ The retrieved context is injected into the prompt, allowing the AI to generate r
 
 | Home | Generated Dashboard |
 |------|----------------------|
-| ![](./screenshots/Home 1.png) | ![](./screenshots/Home 2.png) |
+| ![Home](./screenshots/Home%201.png)|![Result](./screenshots/Home%202.png) |
 
 ---
 
