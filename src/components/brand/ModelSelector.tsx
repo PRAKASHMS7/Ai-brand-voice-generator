@@ -26,18 +26,18 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
               key={model.id}
               type="button"
               onClick={() => onChange(model.id)}
-              className={`w-full text-left p-5.5 rounded-2xl border-2 transition-all duration-300 cursor-pointer hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-indigo-100/40 ${
+              className={`w-full text-left p-5.5 rounded-[var(--radius-card)] border-2 transition-[var(--transition-premium)] cursor-pointer hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 ${
                 isSelected
-                  ? 'border-indigo-500 bg-indigo-500/[0.03] shadow-[0_8px_30px_rgba(79,70,229,0.12)] scale-[1.01]'
-                  : 'border-slate-100/70 bg-white hover:border-slate-300 hover:shadow-premium-md shadow-premium-sm'
+                  ? 'border-[var(--color-primary-accent)] bg-[var(--color-primary-accent)]/[0.02] shadow-premium-md scale-[1.01]'
+                  : 'border-[var(--color-neutral-border)] bg-white hover:border-[var(--color-neutral-border-hover)] hover:shadow-premium-md shadow-premium-sm'
               }`}
             >
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5">
                   {/* Visual icon marker */}
-                  <div className={`w-8.5 h-8.5 rounded-xl flex items-center justify-center font-extrabold text-xs shadow-sm transition-all duration-300 ${
+                  <div className={`w-8.5 h-8.5 rounded-xl flex items-center justify-center font-extrabold text-xs shadow-sm transition-[var(--transition-premium)] ${
                     isSelected 
-                      ? 'bg-gradient-to-br from-indigo-500 to-indigo-650 text-white shadow-indigo-200' 
+                      ? 'bg-gradient-to-br from-[var(--color-primary-accent)] to-[var(--color-secondary-accent)] text-white shadow-indigo-100' 
                       : 'bg-slate-100 text-slate-400'
                   }`}>
                     {model.id === 'claude' && 'Cl'}
@@ -52,7 +52,7 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
                         {model.name}
                       </h4>
                       {isSelected && (
-                        <span className="px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 text-[8px] font-extrabold uppercase tracking-wider">
+                        <span className="px-1.5 py-0.5 rounded bg-indigo-50 text-[var(--color-primary-accent)] text-[8px] font-extrabold uppercase tracking-wider">
                           Active
                         </span>
                       )}
@@ -62,8 +62,8 @@ export const ModelSelector: React.FC<ModelSelectorProps> = ({
                     </span>
                   </div>
                 </div>
-                <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all duration-300 ${
-                  isSelected ? 'border-indigo-650 bg-indigo-650 shadow-sm shadow-indigo-100' : 'border-slate-300'
+                <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-[var(--transition-premium)] ${
+                  isSelected ? 'border-[var(--color-primary-accent)] bg-[var(--color-primary-accent)] shadow-sm' : 'border-slate-300'
                 }`}>
                   {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                 </div>

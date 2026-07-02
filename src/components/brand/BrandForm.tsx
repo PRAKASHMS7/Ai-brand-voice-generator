@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from '../ui/Card';
 import { Input } from '../ui/Input';
-import { Select } from '../ui/Select';
+import { CustomSelect } from '../ui/CustomSelect';
 import { RadioGroup } from '../ui/RadioGroup';
 import { Button } from '../ui/Button';
 import type { BrandVoiceFormState, BrandType, GenerateType } from '../../types';
@@ -37,6 +37,7 @@ export const BrandForm: React.FC<BrandFormProps> = ({
   const isFormValid =
     formState.brandName.trim() !== '' &&
     formState.industry !== '' &&
+    (formState.industry !== 'other' || (formState.customIndustry && formState.customIndustry.trim() !== '')) &&
     formState.tone.trim() !== '' &&
     formState.writingStyle.trim() !== '';
 
@@ -116,12 +117,22 @@ export const BrandForm: React.FC<BrandFormProps> = ({
           </div>
 
           {/* Industry Selection */}
-          <Select
+          <CustomSelect
             label="Industry"
             required
             options={INDUSTRY_OPTIONS}
-            value={formState.industry}
-            onChange={(e) => onChange('industry', e.target.value)}
+            selectedValue={formState.industry}
+            customValue={formState.customIndustry}
+            onSelectChange={(e) => {
+              const val = e.target.value;
+              onChange('industry', val);
+              if (val !== 'other') {
+                onChange('customIndustry', '');
+              }
+            }}
+            onCustomValueChange={(e) => onChange('customIndustry', e.target.value)}
+            customInputLabel="Please Specify Industry"
+            customInputPlaceholder="Enter your industry (Example: Real Estate, Construction, Logistics, Agriculture, Automobile)"
           />
 
           {/* Tone & Style */}

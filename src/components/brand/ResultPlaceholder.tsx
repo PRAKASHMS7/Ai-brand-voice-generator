@@ -141,10 +141,10 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
         <div className="space-y-8">
           
           {/* Brand Overview Card */}
-          <Card className="border-t-4 border-t-indigo-500"
+          <Card className="border-t-4 border-t-[var(--color-primary-accent)]"
             title={
               <span className="flex items-center gap-2.5">
-                <Building2 className="w-5 h-5 text-indigo-500" />
+                <Building2 className="w-5 h-5 text-[var(--color-primary-accent)]" />
                 <span>Brand Overview</span>
               </span>
             } 
@@ -184,10 +184,10 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
           </Card>
 
           {/* Brand Identity Card */}
-          <Card className="border-t-4 border-t-violet-500"
+          <Card className="border-t-4 border-t-[var(--color-secondary-accent)]"
             title={
               <span className="flex items-center gap-2.5">
-                <Fingerprint className="w-5 h-5 text-indigo-500" />
+                <Fingerprint className="w-5 h-5 text-[var(--color-secondary-accent)]" />
                 <span>Brand Identity</span>
               </span>
             } 
@@ -205,7 +205,7 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
                 <div className="flex flex-wrap gap-2">
                   {response.brandIdentity.tone && response.brandIdentity.tone.length > 0 ? (
                     response.brandIdentity.tone.map((t, idx) => (
-                      <span key={idx} className="px-2.5 py-1 rounded-xl bg-indigo-50 border border-indigo-100/60 text-xs font-semibold text-indigo-700">
+                      <span key={idx} className="px-2.5 py-1 rounded-xl bg-[var(--color-primary-accent)]/5 border border-[var(--color-primary-accent)]/10 text-xs font-semibold text-[var(--color-primary-accent)] hover:scale-[1.03] transition-transform">
                         {t}
                       </span>
                     ))
@@ -251,7 +251,7 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
                 <div className="flex flex-wrap gap-2">
                   {response.brandIdentity.coreValues && response.brandIdentity.coreValues.length > 0 ? (
                     response.brandIdentity.coreValues.map((v, idx) => (
-                      <span key={idx} className="px-2.5 py-1 rounded-xl bg-emerald-50 border border-emerald-100/60 text-xs font-semibold text-emerald-700">
+                      <span key={idx} className="px-2.5 py-1 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-xs font-semibold text-emerald-700 hover:scale-[1.03] transition-transform">
                         {v}
                       </span>
                     ))
@@ -269,9 +269,9 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
           </Card>
 
           {/* Content Guide Card */}
-          <Card className="border-t-4 border-t-blue-500" title={
+          <Card className="border-t-4 border-t-blue-600" title={
               <span className="flex items-center gap-2.5">
-                <PenTool className="w-5 h-5 text-indigo-500" />
+                <PenTool className="w-5 h-5 text-blue-600" />
                 <span>Content Guide</span>
               </span>
             } 
@@ -290,7 +290,7 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
                   <div className="flex flex-wrap gap-1.5">
                     {response.contentGuide.preferredWords && response.contentGuide.preferredWords.length > 0 ? (
                       response.contentGuide.preferredWords.map((w, idx) => (
-                        <span key={idx} className="px-2.5 py-1 rounded-xl bg-emerald-50 border border-emerald-100 text-xs text-emerald-700 font-semibold">
+                        <span key={idx} className="px-2.5 py-1 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-xs text-emerald-700 font-semibold hover:scale-[1.03] transition-transform">
                           ✓ {w}
                         </span>
                       ))
@@ -300,11 +300,11 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
                   </div>
                 </div>
                 <div>
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-red-500 block mb-2.5">Words to Avoid</span>
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-rose-500 block mb-2.5">Words to Avoid</span>
                   <div className="flex flex-wrap gap-1.5">
                     {response.contentGuide.avoidWords && response.contentGuide.avoidWords.length > 0 ? (
                       response.contentGuide.avoidWords.map((w, idx) => (
-                        <span key={idx} className="px-2.5 py-1 rounded-xl bg-red-50 border border-red-100 text-xs text-red-750 font-semibold">
+                        <span key={idx} className="px-2.5 py-1 rounded-xl bg-rose-500/5 border border-rose-500/10 text-xs text-rose-700 font-semibold hover:scale-[1.03] transition-transform">
                           ✗ {w}
                         </span>
                       ))
@@ -340,10 +340,10 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
           </Card>
 
           {/* Customer Insights Card */}
-          <Card className="border-t-4 border-t-pink-500"
+          <Card className="border-t-4 border-t-rose-500"
             title={
               <span className="flex items-center gap-2.5">
-                <Users className="w-5 h-5 text-indigo-500" />
+                <Users className="w-5 h-5 text-rose-500" />
                 <span>Customer Insights</span>
               </span>
             } 
@@ -358,7 +358,7 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
             <div className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-red-500 block mb-2.5">Customer Pain Points</span>
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-rose-600 block mb-2.5">Customer Pain Points</span>
                   <ul className="list-disc pl-5 text-xs text-slate-700 space-y-1.5 font-normal leading-relaxed">
                     {response.customerInsights.painPoints && response.customerInsights.painPoints.length > 0 ? (
                       response.customerInsights.painPoints.map((item, idx) => <li key={idx}>{item}</li>)
@@ -381,11 +381,11 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
               </div>
 
               <div>
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-indigo-500 block mb-2.5">Buying Motivations</span>
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-550 block mb-2.5">Buying Motivations</span>
                 <div className="flex flex-wrap gap-2">
                   {response.customerInsights.buyingMotivations && response.customerInsights.buyingMotivations.length > 0 ? (
                     response.customerInsights.buyingMotivations.map((item, idx) => (
-                      <span key={idx} className="px-2.5 py-1 rounded-xl bg-indigo-50 border border-indigo-100 text-xs text-indigo-700 font-semibold">
+                      <span key={idx} className="px-2.5 py-1 rounded-xl bg-[var(--color-primary-accent)]/5 border border-[var(--color-primary-accent)]/10 text-xs font-semibold text-[var(--color-primary-accent)] hover:scale-[1.03] transition-transform">
                         {item}
                       </span>
                     ))
@@ -421,9 +421,9 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
           </Card>
 
           {/* Marketing Assets Card */}
-          <Card className="border-t-4 border-t-purple-500" title={
+          <Card className="border-t-4 border-t-violet-650" title={
               <span className="flex items-center gap-2.5">
-                <Megaphone className="w-5 h-5 text-indigo-500" />
+                <Megaphone className="w-5 h-5 text-violet-600" />
                 <span>Marketing Assets & Copy</span>
               </span>
             } 
@@ -444,10 +444,10 @@ export const ResultPlaceholder: React.FC<ResultPlaceholderProps> = ({
 
         {/* Dedicated Full-Width Brand Voice Analysis Card */}
         <div className="pt-2">
-          <Card className="border-t-4 border-t-emerald-500"
+          <Card className="border-t-4 border-t-emerald-600"
             title={
               <span className="flex items-center gap-2.5">
-                <TrendingUp className="w-5 h-5 text-indigo-500" />
+                <TrendingUp className="w-5 h-5 text-emerald-600" />
                 <span>Strategic Brand Voice Analysis Report</span>
               </span>
             }

@@ -63,22 +63,22 @@ export const RadioGroup = <T extends string>({
               key={option.value}
               type="button"
               onClick={() => onChange(option.value)}
-              className={`flex items-start text-left p-5 rounded-2xl border-2 transition-all duration-300 cursor-pointer hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-indigo-100/50 ${
+              className={`flex items-start text-left p-5 rounded-[var(--radius-card)] border-2 transition-[var(--transition-premium)] cursor-pointer hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 ${
                 isSelected
-                  ? 'border-l-4 border-l-indigo-650 border-y-indigo-500/10 border-r-indigo-500/10 bg-indigo-500/[0.03] shadow-[0_8px_25px_rgba(79,70,229,0.06)]'
-                  : 'border-slate-100/80 bg-white hover:border-slate-300 hover:shadow-premium-md shadow-premium-sm'
+                  ? 'border-l-4 border-l-[var(--color-primary-accent)] border-y-[var(--color-primary-accent)]/10 border-r-[var(--color-primary-accent)]/10 bg-[var(--color-primary-accent)]/[0.02] shadow-premium-md'
+                  : 'border-[var(--color-neutral-border)] bg-white hover:border-[var(--color-neutral-border-hover)] hover:shadow-premium-md shadow-premium-sm'
               }`}
             >
               {option.icon && (
                 <div className={`mr-3 mt-0.5 flex-shrink-0 ${
-                  isSelected ? 'text-indigo-600' : 'text-slate-400'
+                  isSelected ? 'text-[var(--color-primary-accent)]' : 'text-slate-400'
                 }`}>
                   {option.icon}
                 </div>
               )}
               <div className="flex-grow">
                 <span className={`block text-sm font-bold transition-colors duration-250 ${
-                  isSelected ? 'text-indigo-900' : 'text-slate-700'
+                  isSelected ? 'text-indigo-950' : 'text-slate-700'
                 }`}>
                   {option.label}
                 </span>
@@ -89,9 +89,9 @@ export const RadioGroup = <T extends string>({
                 )}
               </div>
               <div className="flex-shrink-0 ml-2 mt-0.5">
-                <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all duration-305 ${
+                <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-[var(--transition-premium)] ${
                   isSelected
-                    ? 'border-indigo-600 bg-indigo-600 shadow-sm shadow-indigo-200'
+                    ? 'border-[var(--color-primary-accent)] bg-[var(--color-primary-accent)] shadow-sm'
                     : 'border-slate-300 bg-white'
                 }`}>
                   {isSelected && (

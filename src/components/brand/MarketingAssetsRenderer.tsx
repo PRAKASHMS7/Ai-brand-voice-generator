@@ -70,7 +70,7 @@ ${hashtagsText}`;
       <div
         role="tablist"
         aria-label="Marketing asset distribution options"
-        className="flex flex-wrap bg-slate-100/70 p-1.5 rounded-2xl gap-1.5"
+        className="flex flex-wrap bg-slate-100/60 p-1.5 rounded-[var(--radius-input)] gap-1.5"
       >
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
@@ -84,9 +84,9 @@ ${hashtagsText}`;
               aria-controls={`panel-${tab.id}`}
               aria-label={tab.ariaLabel}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 min-w-[100px] text-center px-4 py-2.5 rounded-xl text-[11px] font-bold tracking-wide uppercase transition-all duration-300 cursor-pointer focus:outline-none whitespace-nowrap active:scale-[0.98] ${
+              className={`flex-1 min-w-[100px] text-center px-4 py-2.5 rounded-xl text-[11px] font-bold tracking-wide uppercase transition-[var(--transition-premium)] cursor-pointer focus:outline-none whitespace-nowrap active:scale-[0.98] ${
                 isActive
-                  ? 'bg-white text-indigo-700 shadow-sm border border-slate-200/40'
+                  ? 'bg-white text-[var(--color-primary-accent)] shadow-sm border border-slate-200/40'
                   : 'text-slate-500 hover:text-slate-700'
               }`}
             >
@@ -206,7 +206,7 @@ ${hashtagsText}`;
             <div className="mt-1.5 flex flex-wrap gap-1.5">
               {activeAsset?.hashtags && activeAsset.hashtags.length > 0 ? (
                 activeAsset.hashtags.map((h, idx) => (
-                  <span key={idx} className="px-2 py-0.5 rounded-md bg-indigo-50 border border-indigo-100 text-[11px] font-semibold text-indigo-700">
+                  <span key={idx} className="px-2.5 py-1 rounded-xl bg-[var(--color-primary-accent)]/5 border border-[var(--color-primary-accent)]/10 text-xs font-semibold text-[var(--color-primary-accent)] hover:scale-[1.03] transition-transform">
                     {h}
                   </span>
                 ))

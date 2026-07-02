@@ -10,6 +10,7 @@ export interface BrandVoiceFormState {
   brandName: string;
   websiteUrl: string;
   industry: string;
+  customIndustry?: string;
   tone: string;
   writingStyle: string;
   targetAudience: string;

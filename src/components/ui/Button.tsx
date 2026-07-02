@@ -19,12 +19,12 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const baseStyle = 'inline-flex items-center justify-center font-bold rounded-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-[0.97]';
+  const baseStyle = 'inline-flex items-center justify-center font-bold rounded-[var(--radius-input)] transition-[var(--transition-premium)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary-accent)]/20 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer active:scale-[0.97]';
   
   const variants = {
-    primary: 'bg-gradient-to-r from-indigo-600 to-indigo-750 hover:from-indigo-700 hover:to-indigo-800 text-white shadow-[0_4px_14px_rgba(79,70,229,0.3)] hover:shadow-[0_6px_20px_rgba(79,70,229,0.4)] focus:ring-indigo-500',
+    primary: 'bg-gradient-to-r from-[var(--color-primary-accent)] to-[var(--color-secondary-accent)] hover:opacity-95 text-white shadow-premium-md hover:shadow-premium-lg focus:ring-[var(--color-primary-accent)]',
     secondary: 'bg-slate-100 hover:bg-slate-200 text-slate-800 focus:ring-slate-400',
-    outline: 'border border-slate-200/80 bg-white hover:bg-slate-50 text-slate-700 focus:ring-indigo-500',
+    outline: 'border border-[var(--color-neutral-border)] bg-white hover:bg-slate-50 text-slate-705 focus:ring-[var(--color-primary-accent)] hover:border-[var(--color-neutral-border-hover)]',
     ghost: 'hover:bg-slate-50/60 text-slate-655 focus:ring-slate-400',
   };
 

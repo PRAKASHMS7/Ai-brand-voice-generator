@@ -27,10 +27,10 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, FormElem
     const isTextarea = props.multiline === true;
 
     const baseInputStyle =
-      'w-full rounded-xl border px-4 py-3 text-sm transition-all duration-300 outline-none shadow-sm ' +
+      'w-full rounded-[var(--radius-input)] border px-4 py-3 text-sm transition-[var(--transition-premium)] outline-none shadow-sm ' +
       (error
-        ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-100 bg-red-50/10 text-red-900'
-        : 'border-slate-200 bg-slate-50 hover:bg-slate-100/30 hover:border-slate-300 focus:bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 text-slate-805');
+        ? 'border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-100/40 bg-red-50/10 text-red-900'
+        : 'border-[var(--color-neutral-border)] bg-slate-50/40 hover:bg-slate-100/50 hover:border-[var(--color-neutral-border-hover)] focus:bg-white focus:border-[var(--color-primary-accent)] focus:ring-4 focus:ring-indigo-500/10 text-slate-800');
 
     const labelElement = label && (
       <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-600 mb-2 flex items-center justify-between">

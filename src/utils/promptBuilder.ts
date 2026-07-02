@@ -22,7 +22,7 @@ export const buildBrandVoicePrompt = (form: BrandVoiceFormState): string => {
 ### BRAND INFORMATION:
 - Brand Name: ${form.brandName}
 - Brand Type: ${form.brandType} (${brandTypeDescription})
-- Industry: ${form.industry}
+- Industry: ${form.industry === 'other' ? (form.customIndustry || 'Other') : form.industry}
 - Generate For: ${form.generateFor} (${generateForDescription})
 ${form.websiteUrl ? `- Website URL: ${form.websiteUrl}\n` : ''}${form.tagline ? `- Brand Tagline: ${form.tagline}\n` : ''}${form.targetAudience ? `- Target Audience: ${form.targetAudience}\n` : ''}
 ### VOICE & STYLE PARAMETERS:
